@@ -12,7 +12,7 @@ jobs:
       id-token: write # Requirement for trusted publishing (OIDC)
     environment:
       name: pypi
-      url: https://pypi.org/p/logdetective
+      url: https://test.pypi.org/project/logdetective/
     steps:
       - name: Repository checkout
         uses: actions/checkout@v4
@@ -26,3 +26,5 @@ jobs:
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
