@@ -1,0 +1,28 @@
+---
+name: Push a new release to Pypi repository
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  pypi-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Requirement for trusted publishing (OIDC)
+    environment:
+      name: pypi
+      url: https://pypi.org/p/logdetective
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+      - name: Build logdetective package
+        run: |
+          pip install poetry
+          poetry build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
