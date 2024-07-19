@@ -12,7 +12,7 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
       # Regex by https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
       - name: Check semver
         run: >
